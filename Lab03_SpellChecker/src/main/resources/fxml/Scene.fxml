@@ -1,16 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.spellchecker.FXMLController">
    <top>
-      <Label text="Lab03_SpellChecker" BorderPane.alignment="CENTER">
+      <Label text="Lab3_SpellChecker" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="20.0" />
          </BorderPane.margin>
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
       </Label>
    </top>
+   <center>
+      <VBox maxHeight="100.0" prefHeight="150.0" prefWidth="80.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox>
+               <children>
+                  <Label text="Choose the language:" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="20.0" top="19.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial" size="11.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="boxLanguage" maxHeight="20.0" minHeight="30.0" prefHeight="30.0" prefWidth="120.0">
+                     <HBox.margin>
+                        <Insets left="15.0" top="11.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <TextField fx:id="txtUser" alignment="TOP_LEFT" maxHeight="50.0" minHeight="150.0" prefHeight="100.0" prefWidth="50.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#btnSpell" text="Spell Check">
+               <VBox.margin>
+                  <Insets left="280.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Wrong words">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtWrong" alignment="TOP_LEFT" editable="false" maxHeight="50.0" minHeight="150.0" prefHeight="100.0" prefWidth="50.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </TextField>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="txtErrors" text="The text contains ... errors" textFill="#e51717">
+                           <HBox.margin>
+                              <Insets left="150.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="11.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#btnClear" text="Clear Text">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="6.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label fx:id="txtTime">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
 </BorderPane>
