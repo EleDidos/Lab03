@@ -19,9 +19,9 @@ public class Dictionary {
 	
 	//***************** ARRAYLIST o LINKEDLIST ****************************************************
 	//CON LA LISTA NON E' IN ORDINE ALFABETICO, dovrei sempre riordinarlo
-	//List <String> dic=new LinkedList <String> (); //cambierò solo qui la lista
+	List <String> dic=new LinkedList <String> (); //cambierò solo qui la lista
 	
-	TreeMap <String,RichWord> dic = new TreeMap <String,RichWord>();
+	//TreeMap <String,RichWord> dic = new TreeMap <String,RichWord>();
 	
 	
 	public void loadDictionary(String nomeFile, String language) {
@@ -31,7 +31,8 @@ public class Dictionary {
 			BufferedReader br = new BufferedReader (fr);
 			String word;
 			while ((word=br.readLine())!=null) {
-				dic.put(word,new RichWord(word));
+				//dic.put(word,new RichWord(word));
+				dic.add(word);
 			}
 			br.close();
 			fr.close();
@@ -45,14 +46,29 @@ public class Dictionary {
 		
 		List <RichWord> words = new LinkedList <RichWord>();
 		
-		for(String si: inputTextList) {
+		//MAP
+		/*for(String si: inputTextList) {
 			if(dic.get(si)!=null) { //la contiene già
 				dic.get(si).setCorrect(true); //corretta
+				words.add(dic.get(si));
 			} else { //non la contiene
 				dic.get(si).setCorrect(false); //sbagliata
-			}
-				
+			}	
+		}*/
+		
+		//LISTA
+		for(String si: inputTextList) {
+			if(dic.contains(si)) { //la contiene già
+				RichWord rw = new RichWord (si);
+				rw.setCorrect(true); //corretta
+				words.add(rw);
+			} else { //non la contiene
+				RichWord rw = new RichWord (si);
+				rw.setCorrect(false); //sbagliata
+				words.add(rw);
+			}	
 		}
+		
 		return words;	
 	}
 	
@@ -60,7 +76,7 @@ public class Dictionary {
 	/**
 	 * lista in ordine alfabetico su cui effettuare la ricerca
 	 * key il valore da cercare
-	 * @return la posizione del valore trovato, -1 se non l'ha trovato
+	 * @return words giuste o sbagliate che siano
 	 * 
 	 * FUNZIONA SOLO CON UN ARRAY??????
 	*/
@@ -72,7 +88,7 @@ public class Dictionary {
 			String [] arrayDIC = new String [dic.size()]; 
 			
 			int i = -1;
-			for(String si: dic.keySet()) {
+			for(String si: dic) {
 				arrayDIC[++i]=si;
 			}
 			

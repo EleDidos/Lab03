@@ -52,13 +52,20 @@ public class FXMLController {
     	//CARICO IL VOCABOLARIO SCELTO
     	String lang = boxLanguage.getValue();
     	String nomeFile = lang+".txt";
-    	//String nomeFile = "English.txt";
     	model.loadDictionary(nomeFile,lang); //passo la lingua di cui caricare il vocabolario
     	
     	//Passo FRASE SCRITTA minuscola e senza punteggiatura
     	String input = txtUser.getText().toLowerCase();
-    	input.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]", "");
     	
+    	//String symbols [] = {".", ",", "!"};
+    	input.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]", "");
+    	/*for(String c: input.split(""))
+    		for(String sym:symbols)
+    			if(c.equals(sym)) {
+    				c="";
+    				break;
+    			}*/
+    		
     	
     	String inputArray []= input.split(" ");
     	// ***************************************** LINKED o ARRAY *************************************
@@ -75,10 +82,12 @@ public class FXMLController {
     	
     	
     	//TEMPO per TESTARE ERRORI con RICERCA DICOTOMICA
-    	double start2 = System.nanoTime()*Math.pow(10, -6);
+    	/*double start2 = System.nanoTime()*Math.pow(10, -6);
     	writtenWords = model.spellCheckTextDichotomic(inputList);
     	double end2 = System.nanoTime()*Math.pow(10, -6);
-    	double difference2= end2-start2;
+    	double difference2= end2-start2;*/
+    	
+    	double difference2=0.0;
     	
     	
     	// MODIFICO VIEW
