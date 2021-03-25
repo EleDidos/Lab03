@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import it.polito.tdp.spellchecker.model.Dictionary;
 import it.polito.tdp.spellchecker.model.RichWord;
 import javafx.event.ActionEvent;
@@ -12,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 public class FXMLController {
 
@@ -30,13 +30,16 @@ public class FXMLController {
     private TextField txtUser;
 
     @FXML
-    private TextField txtWrong;
+    private TextArea txtWrong;
 
     @FXML
     private Label txtErrors;
 
     @FXML
     private Label txtTime;
+    
+    @FXML
+    private Label txtTime2;
 
     @FXML
     void btnClear(ActionEvent event) {
@@ -44,6 +47,7 @@ public class FXMLController {
     	txtWrong.setText("");
     	txtErrors.setText("The text contains ... errors");
     	txtTime.setText("");
+    	txtTime2.setText("");
     }
 
     @FXML
@@ -57,14 +61,8 @@ public class FXMLController {
     	//Passo FRASE SCRITTA minuscola e senza punteggiatura
     	String input = txtUser.getText().toLowerCase();
     	
-    	//String symbols [] = {".", ",", "!"};
-    	input.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]", "");
-    	/*for(String c: input.split(""))
-    		for(String sym:symbols)
-    			if(c.equals(sym)) {
-    				c="";
-    				break;
-    			}*/
+    	
+    	input= input.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]", "");
     		
     	
     	String inputArray []= input.split(" ");
@@ -82,12 +80,12 @@ public class FXMLController {
     	
     	
     	//TEMPO per TESTARE ERRORI con RICERCA DICOTOMICA
-    	/*double start2 = System.nanoTime()*Math.pow(10, -6);
+    	double start2 = System.nanoTime()*Math.pow(10, -6);
     	writtenWords = model.spellCheckTextDichotomic(inputList);
     	double end2 = System.nanoTime()*Math.pow(10, -6);
-    	double difference2= end2-start2;*/
+    	double difference2= end2-start2;
     	
-    	double difference2=0.0;
+    	//double difference2=0.0;
     	
     	
     	// MODIFICO VIEW
@@ -99,8 +97,8 @@ public class FXMLController {
     	
     	txtWrong.setText(wrong);
     	txtErrors.setText("The text contains "+errors+" errors");
-    	txtTime.setText("Spell check with LINEAR SEARCH completed in "+difference1+" seconds\n"
-    			+ "Spell check with DICHOTOMIC SEARCH completed in "+difference2+" seconds");
+    	txtTime.setText("Spell check with LINEAR SEARCH completed in "+difference1+" milliseconds");
+    	txtTime2.setText("Spell check with DICHOTOMIC SEARCH completed in "+difference2+" milliseconds");
     }
     
     public void setModel(Dictionary model2) {
@@ -116,7 +114,7 @@ public class FXMLController {
         assert txtWrong != null : "fx:id=\"txtWrong\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtErrors != null : "fx:id=\"txtErrors\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtTime != null : "fx:id=\"txtTime\" was not injected: check your FXML file 'Scene.fxml'.";
-
+        assert txtTime2 != null : "fx:id=\"txtTime2\" was not injected: check your FXML file 'Scene.fxml'.";
     }
 }
 

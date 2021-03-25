@@ -4,13 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.spellchecker.FXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.spellchecker.FXMLController">
    <top>
       <Label text="Lab3_SpellChecker" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -22,7 +23,7 @@
       </Label>
    </top>
    <center>
-      <VBox maxHeight="100.0" prefHeight="150.0" prefWidth="80.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="100.0" prefHeight="160.0" prefWidth="80.0" BorderPane.alignment="CENTER">
          <children>
             <HBox>
                <children>
@@ -74,14 +75,14 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <TextField fx:id="txtWrong" alignment="TOP_LEFT" editable="false" maxHeight="50.0" minHeight="150.0" prefHeight="100.0" prefWidth="50.0">
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
+            <TextArea fx:id="txtWrong" editable="false" minHeight="150.0" prefHeight="200.0" prefWidth="200.0">
                <font>
                   <Font name="Arial" size="11.0" />
                </font>
-            </TextField>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </TextArea>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -106,10 +107,18 @@
                   </HBox>
                   <Label fx:id="txtTime">
                      <font>
-                        <Font size="11.0" />
+                        <Font name="Arial" size="10.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" top="5.0" />
+                        <Insets bottom="2.0" left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="txtTime2">
+                     <font>
+                        <Font name="Arial" size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" top="2.0" />
                      </VBox.margin>
                   </Label>
                </children>

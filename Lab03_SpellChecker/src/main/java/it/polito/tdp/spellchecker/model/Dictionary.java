@@ -20,8 +20,8 @@ public class Dictionary {
 	//***************** ARRAYLIST o LINKEDLIST ****************************************************
 	//CON LA LISTA NON E' IN ORDINE ALFABETICO, dovrei sempre riordinarlo
 	List <String> dic=new LinkedList <String> (); //cambierò solo qui la lista
+	//List <String> dic=new ArrayList <String> (); 
 	
-	//TreeMap <String,RichWord> dic = new TreeMap <String,RichWord>();
 	
 	
 	public void loadDictionary(String nomeFile, String language) {
@@ -92,13 +92,14 @@ public class Dictionary {
 				arrayDIC[++i]=si;
 			}
 			
+			//cerco ogni parola passato dall'utente nel vocabolario
 			for(String cerca : lista) {
 				
 				int low = 0;
-				int high = lista.size()-1;
-				int mid = (low+high)/2;
+				int high = dic.size()-1; //lunghezza del dizionario
 				boolean found=false;
 				while (low<=high) {
+					int mid = (low+high)/2;
 					if(arrayDIC[mid].equals(cerca)) {
 						found=true; //parola trovata nella posizione mid
 						break;
@@ -115,11 +116,11 @@ public class Dictionary {
 				if(found==true) {
 					//creo una parola da aggiungere alle mie "words" secondo il "mid" aggiornato
 					//setto true=corretta alla parola trovata 
-					RichWord rw = new RichWord (arrayDIC[mid]);
+					RichWord rw = new RichWord (cerca);
 					rw.setCorrect(true); //corretta
 					words.add(rw);
 				} else {
-					RichWord rw = new RichWord (arrayDIC[mid]);
+					RichWord rw = new RichWord (cerca);
 					rw.setCorrect(false); //sbagliata
 					words.add(rw);
 				}
