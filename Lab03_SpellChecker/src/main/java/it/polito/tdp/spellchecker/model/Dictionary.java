@@ -19,8 +19,8 @@ public class Dictionary {
 	
 	//***************** ARRAYLIST o LINKEDLIST ****************************************************
 	//CON LA LISTA NON E' IN ORDINE ALFABETICO, dovrei sempre riordinarlo
-	List <String> dic=new LinkedList <String> (); //cambierò solo qui la lista
-	//List <String> dic=new ArrayList <String> (); 
+	//List <String> dic=new LinkedList <String> (); //cambierò solo qui la lista
+	List <String> dic=new ArrayList <String> (); 
 	
 	
 	
@@ -45,16 +45,6 @@ public class Dictionary {
 	public List <RichWord> spellCheckTextLinear (List<String> inputTextList){
 		
 		List <RichWord> words = new LinkedList <RichWord>();
-		
-		//MAP
-		/*for(String si: inputTextList) {
-			if(dic.get(si)!=null) { //la contiene già
-				dic.get(si).setCorrect(true); //corretta
-				words.add(dic.get(si));
-			} else { //non la contiene
-				dic.get(si).setCorrect(false); //sbagliata
-			}	
-		}*/
 		
 		//LISTA
 		for(String si: inputTextList) {
@@ -82,53 +72,45 @@ public class Dictionary {
 	*/
 	public List <RichWord> spellCheckTextDichotomic (List<String> lista){
 		
-			List <RichWord> words = new LinkedList <RichWord>(); //giuste o sbagliate
+		List <RichWord> words = new LinkedList <RichWord>(); //giuste o sbagliate
 		
-			//DIZIONARIO in ordine alfabetico IN ARRAY
-			String [] arrayDIC = new String [dic.size()]; 
+		//cerco ogni parola passato dall'utente nel vocabolario
+		for(String cerca : lista) {
 			
-			int i = -1;
-			for(String si: dic) {
-				arrayDIC[++i]=si;
+			int low = 0;
+			int high = dic.size()-1; //lunghezza del dizionario
+			boolean found=false;
+			while (low<=high) {
+				int mid = (low+high)/2;
+				if(dic.get(mid).equals(cerca)) {
+					found=true; //parola trovata nella posizione mid
+					break;
+			     }
+				else if (dic.get(mid).compareTo(cerca)<0) {
+					low = mid + 1; //taglio via la parte di dizionario troppo piccol lessicograficamente
+					//guardo solo più la parte a dx delk "mid"
+				}
+				else {
+					high = mid - 1; //guardo solo più la parte a sx del "mid"
+				}
+			} //while
+			
+			if(found==true) {
+				//creo una parola da aggiungere alle mie "words" secondo il "mid" aggiornato
+				//setto true=corretta alla parola trovata 
+				RichWord rw = new RichWord (cerca);
+				rw.setCorrect(true); //corretta
+				words.add(rw);
+			} else {
+				RichWord rw = new RichWord (cerca);
+				rw.setCorrect(false); //sbagliata
+				words.add(rw);
 			}
 			
-			//cerco ogni parola passato dall'utente nel vocabolario
-			for(String cerca : lista) {
-				
-				int low = 0;
-				int high = dic.size()-1; //lunghezza del dizionario
-				boolean found=false;
-				while (low<=high) {
-					int mid = (low+high)/2;
-					if(arrayDIC[mid].equals(cerca)) {
-						found=true; //parola trovata nella posizione mid
-						break;
-				     }
-					else if (arrayDIC[mid].compareTo(cerca)<0) {
-						low = mid + 1; //taglio via la parte di dizionario troppo piccol lessicograficamente
-						//guardo solo più la parte a dx delk "mid"
-					}
-					else {
-						high = mid - 1; //guardo solo più la parte a sx del "mid"
-					}
-				} //while
-				
-				if(found==true) {
-					//creo una parola da aggiungere alle mie "words" secondo il "mid" aggiornato
-					//setto true=corretta alla parola trovata 
-					RichWord rw = new RichWord (cerca);
-					rw.setCorrect(true); //corretta
-					words.add(rw);
-				} else {
-					RichWord rw = new RichWord (cerca);
-					rw.setCorrect(false); //sbagliata
-					words.add(rw);
-				}
-				
-			} //for ogni parola da cercare passata da user
-			
-			return words; //lista di parole a cui ho anche assegnato GIUSTO o SBAGLIATO	
-	}
+		} //for ogni parola da cercare passata da user
+		
+		return words; //lista di parole a cui ho anche assegnato GIUSTO o SBAGLIATO	
+}
 	
 	
 	public String wrongWords (List <RichWord> list) {
